@@ -32,10 +32,10 @@ jobs:
         run: terraform -chdir=01 init
 
       - name: Plan
-        run: terraform -chdir=01 plan
+        run: terraform -chdir=01 plan -out=tfplan
 
       - name: Apply
-        run: terraform -chdir=01 apply
+        run: terraform -chdir=01 apply -auto-approve tfplan
 
   
 
