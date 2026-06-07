@@ -35,7 +35,7 @@ jobs:
         run: terraform -chdir=01 plan
 
       - name: Apply
-        run: terraform -chdir=01 Apply
+        run: terraform -chdir=01 apply
 
   
 
