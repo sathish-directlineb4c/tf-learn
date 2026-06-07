@@ -1,12 +1,38 @@
 name: terraform plan
-on: push
+on: 
+  push:
+    paths:
+      - '01/**'
+      - './github/workflows/*.yml'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
-  trraform-plan:
+  trraform-init:
     runs-on: ubuntu-latest
+    env:
+      AWS_REGION: eu-west-1
     steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Config aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with: 
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Checkout terraform
+        uses: hashicorp/setup-terraform@v3
+
       - name: Init
         run: terraform -chdir=01 init
+
       - name: Plan
         run: terraform -chdir=01 plan
+
+  
+
