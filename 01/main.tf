@@ -2,7 +2,7 @@ terraform{
     required_providers {
         aws = {
             source = "hashicorp/aws"
-            version = "~> 4.0"  
+            version = "~> 6.0"  
         }
     }
 }
@@ -43,6 +43,6 @@ resource "aws_route_table" "demo_routes" {
 }
 
 resource "aws_route_table_association" "demo_rs_asso" {
-    route_table_id = aws_route_table.demo_routes
-    subnet_id = aws_subnet.app_subnet
+    route_table_id = aws_route_table.demo_routes.id
+    subnet_id = aws_subnet.app_subnet.id
 }
