@@ -39,3 +39,6 @@ jobs:
 
       - name: Apply
         run: terraform -chdir=${{ env.WORKING_DIR }} apply -auto-approve tfplan
+
+      - name: Destroy
+        run: terraform -chdir=${{ env.WORKING_DIR }} destroy -auto-approve tfplan
