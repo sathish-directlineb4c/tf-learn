@@ -4,6 +4,7 @@ on:
     paths:
       - '01/**'
       - '.github/workflows/*.yml'
+  workflow_dispatch:
 
 permissions:
   id-token: write
@@ -32,6 +33,9 @@ jobs:
 
       - name: Plan
         run: terraform -chdir=01 plan
+
+      - name: Apply
+        run: terraform -chdir=01 Apply
 
   
 
