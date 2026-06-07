@@ -1,8 +1,0 @@
-name: terraform plan
-on: push
-jobs:
-  trraform-plan:
-    runs-on:ubuntu-latest
-    id:tf-plan
-    run |
-    terraform plan 

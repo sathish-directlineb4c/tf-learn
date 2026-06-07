@@ -1,0 +1,12 @@
+name: terraform plan
+on: push
+jobs:
+  trraform-plan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - name: Init
+        run: terraform -chdir=01 init
+      - name: Plan
+        run: terraform -chdir=01 plan
