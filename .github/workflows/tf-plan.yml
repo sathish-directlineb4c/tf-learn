@@ -35,7 +35,9 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Init
-        run: terraform -chdir= ${{ inputs.working_dir }} init
+        run: |
+          echo 'Input directory name: ${{ inputs.working_dir}}'
+          terraform -chdir= ${{ inputs.working_dir }} init
 
       - name: Plan
         run: terraform -chdir= ${{ inputs.working_dir }} plan -out=tfplan
