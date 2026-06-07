@@ -32,10 +32,10 @@ jobs:
       - name: Init
         run: |
           echo 'Input directory name: ${{ env.WORKING_DIR}}'
-          terraform -chdir= ${{ env.WORKING_DIR }} init
+          terraform -chdir=${{ env.WORKING_DIR }} init
 
       - name: Plan
-        run: terraform -chdir= ${{ env.WORKING_DIR }} plan -out=tfplan
+        run: terraform -chdir=${{ env.WORKING_DIR }} plan -out=tfplan
 
       - name: Apply
-        run: terraform -chdir= ${{ env.WORKING_DIR }} apply -auto-approve tfplan
+        run: terraform -chdir=${{ env.WORKING_DIR }} apply -auto-approve tfplan
