@@ -1,10 +1,9 @@
 name: terraform plan
-on: 
+on: [push,workflow_dispatch]
   push:
     paths:
       - '01/**'
       - './github/workflows/*.yml'
-  workflow_dispatch:
 
 permissions:
   id-token: write
