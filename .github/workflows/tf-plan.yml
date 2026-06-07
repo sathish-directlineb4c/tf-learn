@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - '01/**'
-      - './github/workflows/*.yml'
+      - '.github/workflows/*.yml'
 
 permissions:
   id-token: write
