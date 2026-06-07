@@ -6,12 +6,6 @@ on:
       - '.github/workflows/*.yml'
   workflow_dispatch:
 
-    inputs:
-    working_dir:
-      type: string
-      required: false
-      default: '01'
-
 permissions:
   id-token: write
   contents: read
@@ -21,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_REGION: eu-west-1
+      WORKING_DIR: '01'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,11 +31,11 @@ jobs:
 
       - name: Init
         run: |
-          echo 'Input directory name: ${{ inputs.working_dir}}'
-          terraform -chdir= ${{ inputs.working_dir }} init
+          echo 'Input directory name: ${{ env.WORKING_DIR}}'
+          terraform -chdir= ${{ env.WORKING_DIR }} init
 
       - name: Plan
-        run: terraform -chdir= ${{ inputs.working_dir }} plan -out=tfplan
+        run: terraform -chdir= ${{ env.WORKING_DIR }} plan -out=tfplan
 
       - name: Apply
-        run: terraform -chdir= ${{ inputs.working_dir }} apply -auto-approve tfplan
+        run: terraform -chdir= ${{ env.WORKING_DIR }} apply -auto-approve tfplan
